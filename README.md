@@ -34,8 +34,8 @@ It allows students, teachers, and administrators to access and manage college no
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Shrinidhi-2006/Smart-Notice-Board-WEB.git
-   cd Smart-Notice-Board-WEB
+   git clone https://github.com/Shrinidhi-2006/Virtual-Notice-Board-WEB.git
+   cd Virtual-Notice-Board-WEB
 
 2. **Install dependencies**
    ```bash
