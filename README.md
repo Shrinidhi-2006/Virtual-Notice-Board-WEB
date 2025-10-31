@@ -1,2 +1,2 @@
-# Smart-Notice-Board-WEB
+# Virtual-Notice-Board-WEB
 Angular Project
