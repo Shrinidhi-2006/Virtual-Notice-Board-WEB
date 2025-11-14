@@ -252,15 +252,23 @@ export class NoticeListComponent implements OnInit {
     this.selectedUploadedYear = null;
     this.selectedDepartment = '';
     this.isFiltered = false;
+
     this.filterCriteria = {
       postedBy: '',
       year: undefined,
       uploadedYear: undefined,
       department: undefined
     };
+
     this.currentPage = 0;
-    this.loadAllNotices();
+
+    if (this.isAdmin || this.isTeacher) {
+      this.loadAllNotices();
+    } else {
+      this.loadStudentNotices();
+    }
   }
+
 
   canEditNotice(notice: Notice): boolean {
     const user = this.authService.getLoggedUser();
