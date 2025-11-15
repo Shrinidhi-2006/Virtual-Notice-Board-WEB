@@ -16,7 +16,7 @@ import { YearService } from '../../core/services/year.service';
 })
 export class NoticePostComponent implements OnInit {
 
-  notice: Notice = { title: '', description: '', department: '', year: null as any };
+  notice: Notice = { title: '', description: '', department: '', year: null as any, expiryDate: '' };
   selectedFiles: File[] = [];
   previewUrls: string[] = [];
   success = '';
@@ -28,6 +28,7 @@ export class NoticePostComponent implements OnInit {
 
   departments: Department[] = [];
   years: Year[] = [];
+  today = new Date().toISOString().split('T')[0];
 
   constructor(
     private noticeService: NoticeService,
@@ -96,6 +97,17 @@ export class NoticePostComponent implements OnInit {
     // Department
     if (!this.notice.department || !this.notice.department.trim()) {
       this.error = "Department is required.";
+      return;
+    }
+
+    // Expiry Date
+    if (!this.notice.expiryDate) {
+      this.error = "Expiry date is required.";
+      return;
+    }
+    const today = new Date().toISOString().split('T')[0];
+    if (this.notice.expiryDate < today) {
+      this.error = "Expiry date cannot be in the past.";
       return;
     }
 

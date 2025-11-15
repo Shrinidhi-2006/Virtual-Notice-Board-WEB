@@ -31,7 +31,6 @@
           </div>
         </div>
 
-
         <!-- Year Dropdown -->
         <div class="form-group">
           <label>Year *</label>
@@ -48,6 +47,12 @@
         </div>
 
       </div>
+
+      <div class="form-group">
+        <label>Expiry Date *</label>
+        <input type="date" class="form-input" [(ngModel)]="notice.expiryDate" name="expiryDate" [min]="today" />
+      </div>
+
 
       <div class="file-upload-wrapper">
         <label class="file-upload-label">
