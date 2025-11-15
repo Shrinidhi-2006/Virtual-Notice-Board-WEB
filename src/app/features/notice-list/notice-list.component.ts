@@ -188,7 +188,7 @@ export class NoticeListComponent implements OnInit {
     today.setHours(0, 0, 0, 0);
     const exp = new Date(expiryDate);
     exp.setHours(0, 0, 0, 0);
-    return exp < today;
+    return exp < today; 
   }
 
   isExpiringSoon(expiryDate: string | null | undefined): boolean {
@@ -198,7 +198,7 @@ export class NoticeListComponent implements OnInit {
     const exp = new Date(expiryDate);
     exp.setHours(0, 0, 0, 0);
     const diffDays = Math.ceil((exp.getTime() - today.getTime()) / (1000 * 3600 * 24));
-    return diffDays > 0 && diffDays <= 2;
+    return diffDays >= 0 && diffDays <= 2;
   }
 
   // Filter Actions
