@@ -143,8 +143,17 @@
       </div>
 
       <div *ngIf="notice?.imagePaths?.length" class="image-container">
-        <img *ngFor="let img of notice.imagePaths" [src]="img" alt="Notice Image" class="notice-image"
-          (click)="openImageInNewTab(img)" />
+        <ng-container *ngFor="let file of notice.imagePaths">
+
+          <!-- If Image -->
+          <img *ngIf="isImage(file)" [src]="file" alt="Image" class="notice-image" (click)="openImageInNewTab(file)" />
+
+          <!-- If PDF -->
+          <div *ngIf="isPDF(file)" class="pdf-preview-box" (click)="openPDF(file)">
+            <img src="assets/PDF.png" class="pdf-icon" />
+          </div>
+
+        </ng-container>
       </div>
 
       <div class="notice-meta">
