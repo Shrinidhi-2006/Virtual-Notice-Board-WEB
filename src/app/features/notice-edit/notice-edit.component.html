@@ -44,6 +44,13 @@
             </ul>
           </div>
         </div>
+
+        <!-- Expiry Date -->
+        <div class="form-group">
+          <label>Expiry Date *</label>
+          <input type="date" class="form-input" [(ngModel)]="notice.expiryDate" name="expiryDate" [min]="today" />
+        </div>
+
       </div>
 
       <!-- File Upload -->

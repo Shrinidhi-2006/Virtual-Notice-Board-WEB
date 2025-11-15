@@ -35,6 +35,8 @@ export class NoticeEditComponent implements OnInit {
   // Dropdown states
   departmentDropdownOpen = false;
   yearDropdownOpen = false;
+  today = new Date().toISOString().split("T")[0];
+
 
   constructor(
     private noticeService: NoticeService,
@@ -78,6 +80,7 @@ export class NoticeEditComponent implements OnInit {
         this.notice = data;
         this.previewUrls = data.imagePaths || [];
         this.notice.imageFileNames = data.imageFileNames || [];
+        this.notice.expiryDate = data.expiryDate;
       },
       error: () => {
         this.error = 'Failed to load notice details.';
@@ -183,6 +186,17 @@ export class NoticeEditComponent implements OnInit {
       return;
     }
 
+    // Expiry Date
+    if (!this.notice.expiryDate) {
+      this.error = "Expiry date is required.";
+      return;
+    }
+    const today = new Date().toISOString().split('T')[0];
+    if (this.notice.expiryDate < today) {
+      this.error = "Expiry date cannot be in the past.";
+      return;
+    }
+
     // Year
     if (
       this.notice.year === null ||
@@ -233,7 +247,6 @@ export class NoticeEditComponent implements OnInit {
             });
           }
         });
-
     });
   }
 
