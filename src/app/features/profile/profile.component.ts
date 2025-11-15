@@ -59,9 +59,8 @@ export class ProfileComponent implements OnInit {
         }).subscribe({
             next: ({ user, departments, years }) => {
                 this.user = user;
-                this.departments = departments;
-                this.years = years.filter(y => y.yearName.toUpperCase() !== 'ALL');
-
+                this.departments = departments.filter(d => d.name.toUpperCase() !== 'ALL');
+                this.years = years.filter(y => y.yearName.toUpperCase() !== 'ALL' && y.yearNumber !== 0);
                 this.selectedDepartment = user.department ?? '';
                 this.selectedYearName = this.getYearLabel(user.year ?? 0);
             }
