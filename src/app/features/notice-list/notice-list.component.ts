@@ -45,7 +45,7 @@ export class NoticeListComponent implements OnInit {
 
   //pagination variables
   currentPage = 0;
-  pageSize = 3;
+  pageSize = 6;
   totalPages = 0;
 
   constructor(

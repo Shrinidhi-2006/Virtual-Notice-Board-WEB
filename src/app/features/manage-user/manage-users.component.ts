@@ -13,7 +13,7 @@ import { UserService } from '../../core/services/user.service';
 export class ManageUsersComponent implements OnInit {
   users: User[] = [];
   currentPage = 0;
-  pageSize = 3;
+  pageSize = 6;
   totalPages = 0;
 
   constructor(private userService: UserService, private router: Router) { }
