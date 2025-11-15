@@ -4,99 +4,113 @@
     <p>Update your personal details</p>
   </div>
 
-  <div class="form-card">
-    <form>
+  <div class="profile-content">
 
-      <!-- Username -->
-      <div class="form-group">
-        <label>Username</label>
-        <input class="form-input readonly" [value]="user.username" readonly />
-      </div>
-
-      <!-- Full Name -->
-      <div class="form-group">
-        <label>Full Name</label>
-        <input class="form-input" [(ngModel)]="user.name" name="name" />
-      </div>
-
-      <!-- Email -->
-      <div class="form-group">
-        <label>Email</label>
-        <input class="form-input" [(ngModel)]="user.gmail" name="gmail" />
-      </div>
-
-      <!-- Mobile -->
-      <div class="form-group">
-        <label>Mobile Number</label>
-        <input class="form-input" [(ngModel)]="user.mobileNumber" name="mobile" />
-      </div>
-
-      <!-- DOB -->
-      <div class="form-group">
-        <label>Date of Birth</label>
-        <input type="date" class="form-input" [(ngModel)]="user.dateOfBirth" name="dob" />
-      </div>
-
-      <!-- Department Dropdown -->
-       <div *ngIf="!isRoleRestricted()">
-      <div class="form-group" >
-        <label [class.disabled-label]="isRoleRestricted()">Department</label>
-
-        <div class="custom-dropdown"
-             [class.disabled]="isRoleRestricted()"
-             (click)="!isRoleRestricted() && toggleDepartmentDropdown()">
-
-          <span>{{ selectedDepartment || 'Select Department' }}</span>
-
-          <ul *ngIf="departmentDropdownOpen && !isRoleRestricted()" class="dropdown-list">
-            <li *ngFor="let dept of departments" (click)="selectDepartment(dept, $event)">
-              {{ dept.name }}
-            </li>
-          </ul>
+    <!-- Left Side: Profile Details -->
+    <div class="form-card">
+      <h4 class="section-title">📝 Personal Information</h4>
+      <form>
+        <!-- Username -->
+        <div class="form-group">
+          <label>Username</label>
+          <input class="form-input readonly" [value]="user.username" readonly />
         </div>
-      </div>
 
-      <!-- Year Dropdown -->
-      <div class="form-group">
-        <label [class.disabled-label]="isRoleRestricted()">Year</label>
-
-        <div class="custom-dropdown"
-             [class.disabled]="isRoleRestricted()"
-             (click)="!isRoleRestricted() && toggleYearDropdown()">
-
-          <span>{{ selectedYearName || 'Select Year' }}</span>
-
-          <ul *ngIf="yearDropdownOpen && !isRoleRestricted()" class="dropdown-list">
-            <li *ngFor="let y of years" (click)="selectYear(y, $event)">
-              {{ y.yearName }}
-            </li>
-          </ul>
+        <!-- Full Name -->
+        <div class="form-group">
+          <label>Full Name</label>
+          <input class="form-input" [(ngModel)]="user.name" name="name" />
         </div>
-      </div>
-      </div>
 
-      <!-- Save Profile -->
-      <button class="save-btn" (click)="updateProfile()" type="button">💾 Save Changes</button>
+        <!-- Email -->
+        <div class="form-group">
+          <label>Email</label>
+          <input class="form-input" [(ngModel)]="user.gmail" name="gmail" />
+        </div>
 
-      <hr />
+        <!-- Mobile -->
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input class="form-input" [(ngModel)]="user.mobileNumber" name="mobile" />
+        </div>
 
-      <!-- Password Section -->
-      <h4>🔒 Change Password</h4>
-      <div class="form-group">
-        <label>New Password</label>
-        <input type="password" class="form-input" [(ngModel)]="newPassword" name="newPass" />
-      </div>
+        <!-- DOB -->
+        <div class="form-group">
+          <label>Date of Birth</label>
+          <input type="date" class="form-input" [(ngModel)]="user.dateOfBirth" name="dob" />
+        </div>
 
-      <div class="form-group">
-        <label>Confirm Password</label>
-        <input type="password" class="form-input" [(ngModel)]="confirmPassword" name="confirmPass" />
-      </div>
+        <!-- Department Dropdown -->
+        <div *ngIf="!isRoleRestricted()" class="form-group">
+          <label [class.disabled-label]="isRoleRestricted()">Department</label>
 
-      <button class="save-btn" type="button" (click)="changePassword()">🔁 Update Password</button>
+          <div class="custom-dropdown" [class.disabled]="isRoleRestricted()"
+            (click)="!isRoleRestricted() && toggleDepartmentDropdown()">
 
-      <p *ngIf="success" class="success-message">{{success}}</p>
-      <p *ngIf="error" class="error-message">{{error}}</p>
+            <span>{{ selectedDepartment || 'Select Department' }}</span>
 
-    </form>
+            <ul *ngIf="departmentDropdownOpen && !isRoleRestricted()" class="dropdown-list">
+              <li *ngFor="let dept of departments" (click)="selectDepartment(dept, $event)">
+                {{ dept.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Year Dropdown -->
+        <div *ngIf="!isRoleRestricted()" class="form-group">
+          <label [class.disabled-label]="isRoleRestricted()">Year</label>
+
+          <div class="custom-dropdown" [class.disabled]="isRoleRestricted()"
+            (click)="!isRoleRestricted() && toggleYearDropdown()">
+
+            <span>{{ selectedYearName || 'Select Year' }}</span>
+
+            <ul *ngIf="yearDropdownOpen && !isRoleRestricted()" class="dropdown-list">
+              <li *ngFor="let y of years" (click)="selectYear(y, $event)">
+                {{ y.yearName }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Save Profile -->
+        <button class="save-btn" (click)="updateProfile()" type="button">💾 Save Changes</button>
+
+        <!-- Profile Messages -->
+        <div class="messages-container">
+          <p *ngIf="profileSuccess" class="success-message">{{profileSuccess}}</p>
+          <p *ngIf="profileError" class="error-message">{{profileError}}</p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Right Side: Password Section -->
+    <div class="form-card">
+      <h4 class="section-title">🔒 Change Password</h4>
+      <form>
+        <div class="form-group">
+          <label>New Password</label>
+          <input type="password" class="form-input" [(ngModel)]="newPassword" name="newPass"
+            placeholder="Enter new password" />
+        </div>
+
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input type="password" class="form-input" [(ngModel)]="confirmPassword" name="confirmPass"
+            placeholder="Confirm new password" />
+        </div>
+
+        <button class="save-btn" type="button" (click)="changePassword()">🔁 Update Password</button>
+
+        <!-- Password Messages -->
+        <div class="messages-container">
+          <p *ngIf="passwordSuccess" class="success-message">{{passwordSuccess}}</p>
+          <p *ngIf="passwordError" class="error-message">{{passwordError}}</p>
+        </div>
+      </form>
+    </div>
+
   </div>
+
 </div>

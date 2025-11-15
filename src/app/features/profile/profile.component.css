@@ -22,15 +22,34 @@
   font-size: 16px;
 }
 
+/* Side by Side Container */
+.profile-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: start;
+}
+
 /* Form Card */
 .form-card {
-  max-width: 700px;
-  margin: 0 auto;
   background: white;
   border-radius: 20px;
   padding: 40px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   animation: slideUp 0.5s ease-out;
+  position: relative;
+  height: fit-content;
+}
+
+.section-title {
+  margin-bottom: 24px;
+  color: #2d3748;
+  font-size: 20px;
+  font-weight: 700;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e2e8f0;
 }
 
 /* Form Group */
@@ -38,6 +57,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .form-group label {
@@ -93,18 +113,9 @@
   transform: translateY(0);
 }
 
-/* Password Section Divider */
-hr {
-  border: none;
-  border-top: 2px solid #e2e8f0;
-  margin: 30px 0;
-}
-
-h4 {
-  margin-bottom: 10px;
-  color: #2d3748;
-  font-size: 20px;
-  font-weight: 700;
+/* Messages Container */
+.messages-container {
+  margin-top: 16px;
 }
 
 /* Success & Error Messages */
@@ -114,7 +125,7 @@ h4 {
   padding: 14px 18px;
   border-radius: 12px;
   font-size: 14px;
-  margin-top: 20px;
+  margin-bottom: 12px;
   border-left: 4px solid #10b981;
   animation: slideIn 0.4s ease;
 }
@@ -125,7 +136,7 @@ h4 {
   padding: 14px 18px;
   border-radius: 12px;
   font-size: 14px;
-  margin-top: 20px;
+  margin-bottom: 12px;
   border-left: 4px solid #ef4444;
   animation: shake 0.4s ease;
 }
@@ -169,6 +180,8 @@ h4 {
   margin: 6px 0 0;
   z-index: 1000;
   animation: dropdownFadeIn 0.2s ease-in-out;
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 .dropdown-list li {
@@ -206,19 +219,6 @@ h4 {
   }
 }
 
-/* Responsive adjustments */
-@media (max-width: 480px) {
-  .custom-dropdown {
-    padding: 12px 14px;
-    font-size: 14px;
-  }
-
-  .dropdown-list li {
-    padding: 8px 12px;
-  }
-}
-
-
 /* Animations */
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(25px); }
@@ -236,8 +236,19 @@ h4 {
   75% { transform: translateX(8px); }
 }
 
-/* Responsive */
+/* Responsive - Stack on smaller screens */
+@media (max-width: 1024px) {
+  .profile-content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
 @media (max-width: 768px) {
+  .profile-container {
+    padding: 24px 16px;
+  }
+
   .form-card {
     padding: 28px 24px;
   }
@@ -264,5 +275,14 @@ h4 {
   .save-btn {
     padding: 12px 18px;
     font-size: 15px;
+  }
+
+  .custom-dropdown {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .dropdown-list li {
+    padding: 8px 12px;
   }
 }

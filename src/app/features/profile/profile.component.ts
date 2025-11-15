@@ -18,8 +18,12 @@ import { forkJoin } from 'rxjs';
 export class ProfileComponent implements OnInit {
 
     user: User = { username: '', roles: [] };
-    success = '';
-    error = '';
+    
+    // Separate messages for profile and password
+    profileSuccess = '';
+    profileError = '';
+    passwordSuccess = '';
+    passwordError = '';
 
     newPassword = '';
     confirmPassword = '';
@@ -65,85 +69,91 @@ export class ProfileComponent implements OnInit {
     }
 
     updateProfile() {
-        this.success = '';
-        this.error = '';
+        // Clear all messages
+        this.profileSuccess = '';
+        this.profileError = '';
+        this.passwordSuccess = '';
+        this.passwordError = '';
 
         if (!this.user.name?.trim()) {
-            this.error = "Full name required.";
+            this.profileError = "Full name required.";
             return;
         }
         if (!this.user.gmail?.trim()) {
-            this.error = "Email required.";
+            this.profileError = "Email required.";
             return;
         }
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(this.user.gmail)) {
-            this.error = "Invalid email.";
+            this.profileError = "Invalid email.";
             return;
         }
 
         // ROLE BASED VALIDATION (Only for Students)
         if (!this.isRoleRestricted()) {
             if (!this.selectedDepartment) {
-                this.error = "Department is required for students.";
+                this.profileError = "Department is required for students.";
                 return;
             }
             if (!this.selectedYearName) {
-                this.error = "Year is required for students.";
+                this.profileError = "Year is required for students.";
                 return;
             }
         }
 
         //MOBILE VALIDATION
         if (!this.user.mobileNumber?.trim()) {
-            this.error = "Mobile number is required.";
+            this.profileError = "Mobile number is required.";
             return;
         }
         const mobileRegex = /^[0-9]{10}$/;
         if (!mobileRegex.test(this.user.mobileNumber)) {
-            this.error = "Mobile number must be a 10-digit number.";
+            this.profileError = "Mobile number must be a 10-digit number.";
             return;
         }
 
         //DATE OF BIRTH VALIDATION
         if (!this.user.dateOfBirth?.trim()) {
-            this.error = "Date of birth is required.";
+            this.profileError = "Date of birth is required.";
             return;
         }
         const dob = new Date(this.user.dateOfBirth);
         const today = new Date();
         const age = today.getFullYear() - dob.getFullYear();
         if (age < 15) {
-            this.error = "User must be at least 15 years old.";
+            this.profileError = "User must be at least 15 years old.";
             return;
         }
 
         this.userService.updateUser(this.user).subscribe({
-            next: () => this.success = "Profile updated successfully!",
-            error: () => this.error = "Failed to update profile."
+            next: () => this.profileSuccess = "Profile updated successfully!",
+            error: () => this.profileError = "Failed to update profile."
         });
     }
 
     changePassword() {
-        this.success = '';
-        this.error = '';
+        // Clear all messages
+        this.profileSuccess = '';
+        this.profileError = '';
+        this.passwordSuccess = '';
+        this.passwordError = '';
 
         if (!this.newPassword.trim() || !this.confirmPassword.trim()) {
-            this.error = "Password fields cannot be empty";
+            this.passwordError = "Password fields cannot be empty";
             return;
         }
         if (this.newPassword !== this.confirmPassword) {
-            this.error = "Passwords do not match";
+            this.passwordError = "Passwords do not match";
             return;
         }
 
         this.userService.resetPassword(this.user.username, this.newPassword).subscribe({
             next: () => {
-                this.success = "Password updated successfully!";
+                this.passwordSuccess = "Password updated successfully!";
                 this.newPassword = "";
                 this.confirmPassword = "";
             },
-            error: () => this.error = "Failed to update password."
+            error: () => this.passwordError = "Failed to update password."
         });
     }
 
