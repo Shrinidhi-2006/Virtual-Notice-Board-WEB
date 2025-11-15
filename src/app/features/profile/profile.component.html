@@ -38,7 +38,8 @@
       </div>
 
       <!-- Department Dropdown -->
-      <div class="form-group">
+       <div *ngIf="!isRoleRestricted()">
+      <div class="form-group" >
         <label [class.disabled-label]="isRoleRestricted()">Department</label>
 
         <div class="custom-dropdown"
@@ -71,6 +72,7 @@
             </li>
           </ul>
         </div>
+      </div>
       </div>
 
       <!-- Save Profile -->

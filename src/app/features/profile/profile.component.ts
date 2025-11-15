@@ -82,13 +82,16 @@ export class ProfileComponent implements OnInit {
             return;
         }
 
-        if (!this.selectedDepartment) {
-            this.error = "Department is required for students.";
-            return;
-        }
-        if (!this.selectedYearName) {
-            this.error = "Year is required for students.";
-            return;
+        // ROLE BASED VALIDATION (Only for Students)
+        if (!this.isRoleRestricted()) {
+            if (!this.selectedDepartment) {
+                this.error = "Department is required for students.";
+                return;
+            }
+            if (!this.selectedYearName) {
+                this.error = "Year is required for students.";
+                return;
+            }
         }
 
         //MOBILE VALIDATION
