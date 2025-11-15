@@ -1,3 +1,4 @@
+// header.component.ts
 import { Component, Input } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
@@ -12,8 +13,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   @Input() title: string = 'Virtual Notice Board';
+  mobileMenuOpen = false;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService, 
+    private router: Router
+  ) { }
 
   home() {
     this.router.navigate(['/dashboard']);
@@ -25,5 +30,13 @@ export class HeaderComponent {
 
   logout() {
     this.authService.logout();
+  }
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  closeMobileMenu() {
+    this.mobileMenuOpen = false;
   }
 }
