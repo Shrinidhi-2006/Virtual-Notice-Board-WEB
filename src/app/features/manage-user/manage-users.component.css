@@ -39,7 +39,18 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
+  table-layout: auto; /* Changed to auto for flexible column widths */
 }
+
+/* Set specific column widths */
+.users-table th:nth-child(1) { width: 10%; min-width: 100px; } /* Username */
+.users-table th:nth-child(2) { width: 12%; min-width: 120px; } /* Name */
+.users-table th:nth-child(3) { width: 18%; min-width: 180px; } /* Email */
+.users-table th:nth-child(4) { width: 12%; min-width: 100px; } /* Department */
+.users-table th:nth-child(5) { width: 8%; min-width: 80px; } /* Year */
+.users-table th:nth-child(6) { width: 10%; min-width: 90px; } /* Role */
+.users-table th:nth-child(7) { width: 12%; min-width: 120px; } /* Mobile */
+.users-table th:nth-child(8) { width: 18%; min-width: 150px; } /* Actions */
 
 .users-table thead {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -64,12 +75,12 @@
 
 .users-table tbody tr {
   border-bottom: 1px solid #e2e8f0;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease; /* Only transition background, not transform */
 }
 
 .users-table tbody tr:hover {
   background: #f7fafc;
-  transform: scale(1.01);
+  /* Removed transform: scale(1.01) - this was causing the flicker */
 }
 
 .users-table tbody tr:last-child {
@@ -79,6 +90,8 @@
 .users-table tbody td {
   padding: 16px;
   color: #4a5568;
+  word-wrap: break-word; /* Break long words */
+  overflow-wrap: break-word; /* Modern browsers */
 }
 
 .badge {
@@ -170,30 +183,6 @@
   font-size: 18px;
 }
 
-.role-badge {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.role-admin {
-  background: #ede9fe;
-  color: #7c3aed;
-}
-
-.role-teacher {
-  background: #dbeafe;
-  color: #2563eb;
-}
-
-.role-student {
-  background: #d1fae5;
-  color: #059669;
-}
-
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -231,6 +220,10 @@
   }
 
   /* Card-style layout for mobile */
+  .users-table {
+    table-layout: auto; /* Reset for mobile */
+  }
+
   .users-table thead {
     display: none;
   }
@@ -252,7 +245,7 @@
   }
 
   .users-table tbody tr:hover {
-    transform: none;
+    background: #f7fafc;
   }
 
   .users-table td {
@@ -289,7 +282,6 @@
     font-size: 12px;
   }
 }
-
 
 /* Pagination Styling */
 .pagination-container {
