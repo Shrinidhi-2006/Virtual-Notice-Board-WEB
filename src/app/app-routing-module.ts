@@ -11,6 +11,7 @@ import { ResetPasswordComponent } from './features/reset-password/reset-password
 import { AddUserComponent } from './features/add-user/add-user.component';
 import { ManageUsersComponent } from './features/manage-user/manage-users.component';
 import { EditUserComponent } from './features/edit-user/edit-user.component';
+import { ProfileComponent } from './features/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'notices', component: NoticeListComponent },
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
       {
         path: 'edit-notice/:id',
         component: NoticeEditComponent,

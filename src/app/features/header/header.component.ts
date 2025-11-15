@@ -19,6 +19,10 @@ export class HeaderComponent {
     this.router.navigate(['/dashboard']);
   }
 
+  profile() {
+    this.router.navigate(['/profile']);
+  }
+
   logout() {
     this.authService.logout();
   }
