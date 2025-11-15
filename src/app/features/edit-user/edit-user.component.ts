@@ -55,7 +55,7 @@ export class EditUserComponent implements OnInit {
     }).subscribe({
       next: ({ user, departments, years, roles }) => {
         this.user = user;
-        this.departments = departments;
+        this.departments = departments.filter(d => d.name.toUpperCase() !== 'ALL');
         this.years = years.filter(y => y.yearName.toUpperCase() !== 'ALL' && y.yearNumber !== 0);
         this.roles = roles;
 
