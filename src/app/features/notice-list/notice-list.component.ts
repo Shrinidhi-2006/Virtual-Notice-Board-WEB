@@ -182,6 +182,25 @@ export class NoticeListComponent implements OnInit {
     return found ? found.yearName : '';
   }
 
+  isExpired(expiryDate: string | null | undefined): boolean {
+    if (!expiryDate) return false;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const exp = new Date(expiryDate);
+    exp.setHours(0, 0, 0, 0);
+    return exp < today;
+  }
+
+  isExpiringSoon(expiryDate: string | null | undefined): boolean {
+    if (!expiryDate) return false;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const exp = new Date(expiryDate);
+    exp.setHours(0, 0, 0, 0);
+    const diffDays = Math.ceil((exp.getTime() - today.getTime()) / (1000 * 3600 * 24));
+    return diffDays > 0 && diffDays <= 2;
+  }
+
   // Filter Actions
   applyFilters() {
     const user = this.authService.getLoggedUser();
@@ -367,7 +386,6 @@ export class NoticeListComponent implements OnInit {
     }
   }
 
-
   nextPage() {
     if (this.currentPage < this.totalPages - 1) {
       this.currentPage++;
@@ -385,7 +403,6 @@ export class NoticeListComponent implements OnInit {
       }
     }
   }
-
 
   previousPage() {
     if (this.currentPage > 0) {
