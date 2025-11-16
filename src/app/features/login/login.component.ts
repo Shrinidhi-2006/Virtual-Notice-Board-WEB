@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     if (user.firstLogin) {
       this.router.navigate(['/reset-password']);
     } else {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/app/dashboard']);
     }
   }
 

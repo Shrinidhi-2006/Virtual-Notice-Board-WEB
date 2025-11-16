@@ -21,11 +21,11 @@ export class HeaderComponent {
   ) { }
 
   home() {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/app/dashboard']);
   }
 
   profile() {
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/app/profile']);
   }
 
   logout() {

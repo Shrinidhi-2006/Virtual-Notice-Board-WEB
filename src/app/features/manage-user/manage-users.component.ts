@@ -54,7 +54,7 @@ export class ManageUsersComponent implements OnInit {
   }
 
   editUser(user: User) {
-    this.router.navigate(['/edit-user', user.id]);
+    this.router.navigate(['/app/manage-users/edit-user', user.id]);
   }
 
   deleteUser(id: number | undefined) {

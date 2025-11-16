@@ -246,7 +246,7 @@ export class EditUserComponent implements OnInit {
       next: () => {
         this.success = '✅ User updated successfully!';
         this.error = '';
-        setTimeout(() => this.router.navigate(['/manage-users']), 200);
+        setTimeout(() => this.router.navigate(['/app/manage-users']), 200);
       },
       error: () => {
         this.error = '❌ Failed to update user.';

@@ -1,0 +1,26 @@
+.breadcrumb {
+  padding: 12px 24px;
+  font-size: 14px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bc-link {
+  color: #5a67d8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.bc-link:hover {
+  text-decoration: underline;
+}
+
+.bc-current {
+  color: #2d3748;
+  font-weight: 700;
+}
+
+.bc-separator {
+  margin: 0 6px;
+  color: #718096;
+}

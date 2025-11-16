@@ -340,7 +340,7 @@ export class NoticeListComponent implements OnInit {
 
   editNotice(notice: Notice): void {
     this.noticeService.setNoticeToEdit(notice);
-    this.router.navigate(['/edit-notice', notice.id]);
+    this.router.navigate(['/app/notices/edit-notice', notice.id]);
   }
 
   deleteNotice(noticeId: any): void {

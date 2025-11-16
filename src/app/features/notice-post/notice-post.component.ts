@@ -181,7 +181,7 @@ export class NoticePostComponent implements OnInit {
       .subscribe({
         next: () => {
           this.success = "Notice posted successfully!";
-          setTimeout(() => this.router.navigate(['/notices']), 500);
+          setTimeout(() => this.router.navigate(['/app/notices']), 500);
         },
         error: (err) => {
           this.error = err.error?.message || "Error posting notice.";

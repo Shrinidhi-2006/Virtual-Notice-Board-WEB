@@ -49,7 +49,7 @@ export class NoticeEditComponent implements OnInit {
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (!id) {
-      this.router.navigate(['/notices']);
+      this.router.navigate(['/app/notices']);
       return;
     }
 
@@ -277,7 +277,7 @@ export class NoticeEditComponent implements OnInit {
               icon: "success"
             });
 
-            setTimeout(() => this.router.navigate(['/notices']), 600);
+            setTimeout(() => this.router.navigate(['/app/notices']), 600);
           },
           error: (err) => {
             Swal.fire({
