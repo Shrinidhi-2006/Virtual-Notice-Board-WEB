@@ -1,26 +1,103 @@
-.breadcrumb {
-  padding: 12px 24px;
-  font-size: 14px;
-  background: #f8f9fa;
-  border-bottom: 1px solid #e2e8f0;
+.breadcrumb-container {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.bc-link {
-  color: #5a67d8;
+.breadcrumb-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 14px 32px;
+}
+
+.breadcrumb-items {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.breadcrumb-separator {
+  display: flex;
+  align-items: center;
+  color: #9ca3af;
+  width: 20px;
+  height: 20px;
+}
+
+.breadcrumb-separator svg {
+  width: 100%;
+  height: 100%;
+}
+
+.breadcrumb-link {
+  padding: 6px 12px;
+  background: #f3f4f6;
+  color: #667eea;
   text-decoration: none;
+  font-size: 14px;
   font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-.bc-link:hover {
-  text-decoration: underline;
+.breadcrumb-link:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
 }
 
-.bc-current {
-  color: #2d3748;
+.breadcrumb-current {
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 14px;
   font-weight: 700;
+  border-radius: 6px;
+  white-space: nowrap;
 }
 
-.bc-separator {
-  margin: 0 6px;
-  color: #718096;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .breadcrumb-wrapper {
+    padding: 12px 20px;
+  }
+
+  .breadcrumb-items {
+    gap: 6px;
+  }
+
+  .breadcrumb-link,
+  .breadcrumb-current {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+
+  .breadcrumb-separator {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .breadcrumb-wrapper {
+    padding: 10px 16px;
+  }
+
+  .breadcrumb-items {
+    gap: 4px;
+  }
+
+  .breadcrumb-link,
+  .breadcrumb-current {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .breadcrumb-separator {
+    width: 14px;
+    height: 14px;
+  }
 }

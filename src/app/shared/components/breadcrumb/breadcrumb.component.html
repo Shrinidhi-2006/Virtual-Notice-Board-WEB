@@ -1,16 +1,27 @@
-<nav class="breadcrumb">
-  <ng-container *ngFor="let bc of breadcrumbs; let last = last">
-    <a 
-      *ngIf="!last"
-      [routerLink]="bc.url"
-      class="bc-link">
-      {{ bc.label }}
-    </a>
 
-    <span *ngIf="last" class="bc-current">
-      {{ bc.label }}
-    </span>
+<!-- breadcrumb.component.html -->
+<nav class="breadcrumb-container" *ngIf="breadcrumbs.length > 0">
+  <div class="breadcrumb-wrapper">
+    <div class="breadcrumb-items">
+      <!-- Breadcrumb Items -->
+      <ng-container *ngFor="let bc of breadcrumbs; let last = last; let first = first">
+        <span *ngIf="!first" class="breadcrumb-separator">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
 
-    <span *ngIf="!last" class="bc-separator">›</span>
-  </ng-container>
+        <a 
+          *ngIf="!last"
+          [routerLink]="bc.url"
+          class="breadcrumb-link">
+          {{ bc.label }}
+        </a>
+
+        <span *ngIf="last" class="breadcrumb-current">
+          {{ bc.label }}
+        </span>
+      </ng-container>
+    </div>
+  </div>
 </nav>
